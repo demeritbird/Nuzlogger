@@ -1,0 +1,24 @@
+{
+  "name": "nuzlogger",
+  "version": "0.1.0",
+  "description": "Simple web application to keep track of Nuzlocke progress",
+  "homepage": "https://github.com/demeritbird/Nuzlogger#readme",
+  "bugs": {
+    "url": "https://github.com/demeritbird/Nuzlogger/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/demeritbird/Nuzlogger.git"
+  },
+  "license": "MIT",
+  "author": "demeritbird",
+  "scripts": {
+    "start:client": "cd client && ng serve",
+    "test:client": "cd client && ng test",
+    "build:client": "cd client && ng build",
+    "start:server": "cd server && go run ./cmd/api",
+    "test:server": "cd server && go test ./...",
+    "test:coverage:server": "cd server && go test ./... -coverprofile=coverage.out && go tool cover -html=coverage.out",
+    "build:server": "cd server && go build ./cmd/api"
+  }
+}
