@@ -13,6 +13,7 @@ func (app *application) routes() http.Handler {
 
 	// middlewares
 	mux.Use(middleware.Recoverer)
+	mux.Use(app.enableCORS)
 
 	// routes
 	mux.Get("/", app.ping)
