@@ -17,6 +17,8 @@
     "test:client": "npm --prefix ./client run ng test -- --browsers=ChromeHeadless --watch=false --code-coverage",
     "test-watch:client": "npm --prefix ./client run ng test",
     "build:client": "cd client && ng build",
+    "docker-start:server": "cd server && docker-compose up -d",
+    "docker-stop:server": "cd server && docker-compose down",
     "start:server": "cd server && go run ./cmd/api",
     "test:server": "cd server && go test ./...",
     "test-coverage:server": "cd server && go test ./... -coverprofile=coverage.out && go tool cover -html=coverage.out",
