@@ -1,12 +1,14 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"net/http"
-	repository "nuzlogger-server/internal"
-	"nuzlogger-server/internal/dbrepo"
+	"nuzlogger-server/internal/repository"
+	"nuzlogger-server/internal/repository/dbrepo"
 	"os"
+	"time"
 
 	"github.com/joho/godotenv"
 )
@@ -14,9 +16,14 @@ import (
 const port = 8080
 
 type application struct {
-	Domain string
-	DSN    string
-	DB     repository.DatabaseRepo
+	Domain       string
+	DSN          string
+	DB           repository.DatabaseRepo
+	auth         Auth
+	JWTSecret    string
+	JWTIssuer    string
+	JWTAudience  string
+	CookieDomain string
 }
 
 func main() {
@@ -41,14 +48,31 @@ func main() {
 	)
 
 	//// Read from Command Line ////
+	flag.StringVar(&app.JWTSecret, "jwt-secret", os.Getenv("JWT_SECRET"), "signing secret") // TODO: change this when complete
+	flag.StringVar(&app.JWTIssuer, "jwt-issuer", app.Domain, "signing issuer")
+	flag.StringVar(&app.JWTAudience, "jwt-audience", app.Domain, "signing audience")
+	flag.StringVar(&app.CookieDomain, "cookie-domain", "localhost", "cookie domain")
+	flag.StringVar(&app.Domain, "domain", "localhost", "domain")
+	flag.Parse()
 
-	//// Connect to the Database ////
+	//// Connect to the Database ///
 	conn, err := app.connectToDB()
 	if err != nil {
 		log.Fatal(err)
 	}
 	app.DB = &dbrepo.PostgresDBRepo{DB: conn}
 	defer app.DB.Connection().Close()
+
+	app.auth = Auth{
+		Issuer:        app.JWTIssuer,
+		Audience:      app.JWTAudience,
+		Secret:        app.JWTSecret,
+		TokenExpiry:   time.Minute * 15,
+		RefreshExpiry: time.Hour * 24,
+		CookiePath:    "/",
+		CookieName:    "__Host-refresh_token",
+		CookieDomain:  app.CookieDomain,
+	}
 
 	//// Start a Web Server ////'
 	log.Println("Starting Server on Port", port)

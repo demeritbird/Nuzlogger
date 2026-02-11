@@ -7,9 +7,16 @@ import (
 	"net/http"
 )
 
+type Status string
+
+const (
+	Success Status = "success"
+	Error   Status = "error"
+)
+
 type JSONResponse struct {
-	Error   bool        `json:"error"`
-	Message string      `json:"message"`
+	Status  Status      `json:"status"`
+	Message string      `json:"message,omitempty"`
 	Data    interface{} `json:"data,omitempty"`
 }
 
@@ -62,12 +69,14 @@ func (app *application) readJSON(w http.ResponseWriter, r *http.Request, data in
 	return nil
 }
 
-// example:
-//
-//		if err != nil {
-//			app.errorJSON(w, err)
-//			return
-//	 }
+func (app *application) successJSON(w http.ResponseWriter, status int, data interface{}) error {
+	var payload JSONResponse
+	payload.Status = "success"
+	payload.Data = data
+
+	return app.writeJSON(w, status, payload)
+}
+
 func (app *application) errorJSON(w http.ResponseWriter, err error, status ...int) error {
 	statusCode := http.StatusBadRequest
 
@@ -76,7 +85,7 @@ func (app *application) errorJSON(w http.ResponseWriter, err error, status ...in
 	}
 
 	var payload JSONResponse
-	payload.Error = true
+	payload.Status = "error"
 	payload.Message = err.Error()
 
 	return app.writeJSON(w, statusCode, payload)
