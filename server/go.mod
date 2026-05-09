@@ -1,4 +1,4 @@
-module nuzlogger-server
+module chaos-xiangqi-server
 
 go 1.24.12
 

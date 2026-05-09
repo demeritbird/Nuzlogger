@@ -1,14 +1,14 @@
 {
-  "name": "nuzlogger",
+  "name": "chaos-xiangqi",
   "version": "0.1.0",
   "description": "Simple web application to keep track of Nuzlocke progress",
-  "homepage": "https://github.com/demeritbird/Nuzlogger#readme",
+  "homepage": "https://github.com/demeritbird/ChaosXiangqi#readme",
   "bugs": {
-    "url": "https://github.com/demeritbird/Nuzlogger/issues"
+    "url": "https://github.com/demeritbird/ChaosXiangqi/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/demeritbird/Nuzlogger.git"
+    "url": "git+https://github.com/demeritbird/ChaosXiangqi.git"
   },
   "license": "MIT",
   "author": "demeritbird",

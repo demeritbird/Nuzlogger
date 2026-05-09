@@ -1,9 +1,9 @@
 package dbrepo
 
 import (
+	"chaos-xiangqi-server/internal/models"
 	"database/sql"
 	"errors"
-	"nuzlogger-server/internal/models"
 	"time"
 )
 

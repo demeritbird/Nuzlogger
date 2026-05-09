@@ -1,10 +1,10 @@
 package main
 
 import (
+	"chaos-xiangqi-server/internal/models"
 	"errors"
 	"fmt"
 	"net/http"
-	"nuzlogger-server/internal/models"
 	"strconv"
 
 	"github.com/golang-jwt/jwt/v4"

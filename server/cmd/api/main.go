@@ -1,12 +1,12 @@
 package main
 
 import (
+	"chaos-xiangqi-server/internal/repository"
+	"chaos-xiangqi-server/internal/repository/dbrepo"
 	"flag"
 	"fmt"
 	"log"
 	"net/http"
-	"nuzlogger-server/internal/repository"
-	"nuzlogger-server/internal/repository/dbrepo"
 	"os"
 	"time"
 
@@ -37,7 +37,7 @@ func main() {
 
 	//// Set Application Config ////
 	var app application
-	app.Domain = "nuzlogger.com"
+	app.Domain = "chaosxiangqi.com"
 	app.DSN = fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=%s timezone=UTC connect_timeout=5",
 		os.Getenv("DATABASE_HOST"),
 		os.Getenv("DATABASE_PORT"),

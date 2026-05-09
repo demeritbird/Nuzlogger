@@ -1,8 +1,8 @@
 package repository
 
 import (
+	"chaos-xiangqi-server/internal/models"
 	"database/sql"
-	"nuzlogger-server/internal/models"
 )
 
 type DatabaseRepo interface {
