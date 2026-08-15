@@ -3,6 +3,13 @@ export type Position = {
   y: number;
 };
 
+export type BoardPosition = {
+  row: number;
+  col: number;
+};
+
+export type PlayerColor = 'red' | 'black';
+
 export type EnvConfig = {
   PRODUCTION: boolean;
   SERVER_LINK: string;

@@ -4,10 +4,7 @@
   position: relative;
 }
 
-.marker {
-  position: absolute;
-  // height: 4px;
-  // width: 4px;
-  // background-color: red;
-  transform: translateX(-50%) translateY(-50%);
+.piece {
+  @include abs-center-self;
+  height: 5rem;
 }

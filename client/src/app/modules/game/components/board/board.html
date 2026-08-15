@@ -1,10 +1,15 @@
+@if (boardAssetFilePath) {
 <div class="container">
-  <img #board [src]="boardFilePath" alt="xiangqi board" />
+  <img #board [src]="boardAssetFilePath" alt="xiangqi board" />
   @for (row of grid; track row) {
   @for (col of row; track col) {
-  <div class="marker" [style.left.px]="col.pos.x" [style.top.px]="col.pos.y"></div>
+  @if (col.piece) {
+  <img class="piece" [src]="getPieceAssetFilePath(col.piece.color, col.piece.type)" [style.left.px]="col.pos.x"
+    [style.top.px]="col.pos.y" />
   }
-  } @empty {
-  <!-- TODO: add an empty board state -->
+  }
   }
 </div>
+} @else {
+<!-- TODO: add an empty board state -->
+}

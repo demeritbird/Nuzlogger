@@ -3,10 +3,9 @@
   width: 100%;
 }
 
-@mixin abs-start {
+@mixin abs-center-self {
   position: absolute;
-  top: 0;
-  left: 0;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 @mixin flex-center {
