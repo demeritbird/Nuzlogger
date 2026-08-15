@@ -1,0 +1,10 @@
+<div class="container">
+  <img #board [src]="boardFilePath" alt="xiangqi board" />
+  @for (row of grid; track row) {
+  @for (col of row; track col) {
+  <div class="marker" [style.left.px]="col.pos.x" [style.top.px]="col.pos.y"></div>
+  }
+  } @empty {
+  <!-- TODO: add an empty board state -->
+  }
+</div>
