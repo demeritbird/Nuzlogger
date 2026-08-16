@@ -14,6 +14,7 @@ export const environment: EnvConfig = {
       x: 0,
       y: 0,
     },
+    WITHIN_INTERSECTION_RANGE: 0,
   },
   pieces: {
     ASSET_PATH: '',

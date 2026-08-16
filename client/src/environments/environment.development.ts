@@ -14,6 +14,7 @@ export const environment: EnvConfig = {
       x: 61.5,
       y: 55.5,
     },
+    WITHIN_INTERSECTION_RANGE: 20,
   },
   pieces: {
     ASSET_PATH: 'playok',

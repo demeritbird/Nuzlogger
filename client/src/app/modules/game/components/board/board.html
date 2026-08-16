@@ -1,15 +1,20 @@
 @if (boardAssetFilePath) {
 <div class="container">
-  <img #board [src]="boardAssetFilePath" alt="xiangqi board" />
-  @for (row of grid; track row) {
-  @for (col of row; track col) {
+  <img #board [src]="boardAssetFilePath" alt="xiangqi board" (load)="updateBoardPosition()" />
+  @for (row of grid; track row; let rowIdx = $index) {
+  @for (col of row; track col; let colIdx = $index) {
   @if (col.piece) {
   <img class="piece" [src]="getPieceAssetFilePath(col.piece.color, col.piece.type)" [style.left.px]="col.pos.x"
-    [style.top.px]="col.pos.y" />
+    [style.top.px]="col.pos.y"
+    (mousedown)="selectPiece({row: rowIdx + 1, col: colIdx + 1}, {color: col.piece.color, type: col.piece.type});">
   }
   }
   }
 </div>
 } @else {
 <!-- TODO: add an empty board state -->
+}
+@if (curSelectedPiece) {
+<img class="piece" [src]="getPieceAssetFilePath(curSelectedPiece.piece.color, curSelectedPiece.piece.type)"
+  [style.left.px]="mouseX" [style.top.px]="mouseY" (mouseup)="unselectPiece($event)" />
 }

@@ -18,6 +18,7 @@ export type EnvConfig = {
     ASSET_FILE: string;
     GRID_OFFSET: Position;
     CELL_OFFSET: Position;
+    WITHIN_INTERSECTION_RANGE: number;
   };
   pieces: {
     ASSET_PATH: string;
